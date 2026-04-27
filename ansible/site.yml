@@ -1,0 +1,22 @@
+- name: Configure Debian domain controller
+  hosts: domain_controller
+  become: true
+  roles:
+    - common
+    - domain_data
+    - openldap
+    - kerberos
+    - samba
+    - bind9
+    - dhcp
+    - chrony
+    - selinux
+    - gpo_gnome
+    - updates_server
+
+- name: Apply GNOME GPO-like policies to clients
+  hosts: gnome_clients
+  become: true
+  roles:
+    - common
+    - gpo_gnome

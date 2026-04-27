@@ -1,0 +1,27 @@
+- name: Install OpenLDAP server packages
+  ansible.builtin.apt:
+    name:
+      - slapd
+      - ldap-utils
+      - ldapscripts
+    state: present
+    update_cache: true
+
+- name: Ensure slapd service enabled
+  ansible.builtin.service:
+    name: slapd
+    state: started
+    enabled: true
+
+- name: Create base domain LDIF
+  ansible.builtin.template:
+    src: base.ldif.j2
+    dest: /tmp/acdc-base.ldif
+    mode: "0600"
+
+- name: Seed base DN (best effort)
+  ansible.builtin.shell: |
+    ldapadd -x -D "{{ ldap_admin_dn }}" -w "{{ ldap_admin_password }}" -f /tmp/acdc-base.ldif || true
+  args:
+    executable: /bin/bash
+  changed_when: false

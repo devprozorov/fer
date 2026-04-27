@@ -1,0 +1,7 @@
+[Unit]
+Description=ACDC self-update from Git
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/acdc/scripts/self-update.sh

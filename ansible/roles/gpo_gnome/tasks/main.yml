@@ -1,0 +1,63 @@
+- name: Install GNOME policy dependencies
+  ansible.builtin.apt:
+    name:
+      - dconf-cli
+      - python3-apt
+    state: present
+    update_cache: true
+
+- name: Install GPO-like package set
+  ansible.builtin.apt:
+    name: "{{ gnome_packages }}"
+    state: present
+
+- name: Ensure dconf profile directory exists
+  ansible.builtin.file:
+    path: /etc/dconf/profile
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Deploy dconf profile
+  ansible.builtin.copy:
+    src: user
+    dest: /etc/dconf/profile/user
+    owner: root
+    group: root
+    mode: "0644"
+  notify: update dconf
+
+- name: Ensure dconf db directory exists
+  ansible.builtin.file:
+    path: /etc/dconf/db/local.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Ensure dconf locks directory exists
+  ansible.builtin.file:
+    path: /etc/dconf/db/local.d/locks
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Deploy GNOME baseline policy
+  ansible.builtin.copy:
+    src: 00-acdc
+    dest: /etc/dconf/db/local.d/00-acdc
+    owner: root
+    group: root
+    mode: "0644"
+  notify: update dconf
+
+- name: Deploy GNOME policy locks
+  ansible.builtin.copy:
+    src: 00-acdc-locks
+    dest: /etc/dconf/db/local.d/locks/00-acdc-locks
+    owner: root
+    group: root
+    mode: "0644"
+  notify: update dconf

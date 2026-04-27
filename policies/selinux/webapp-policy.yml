@@ -1,0 +1,6 @@
+name: webapp_custom
+domain_type: webapp_t
+allow_network_bind: true
+notes: |
+  Generate module with scripts/selinux-policy-builder.sh
+  and validate on staging first.

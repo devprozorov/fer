@@ -1,0 +1,19 @@
+- name: Install SELinux and policy tooling
+  ansible.builtin.apt:
+    name:
+      - selinux-basics
+      - selinux-policy-default
+      - policycoreutils
+      - checkpolicy
+      - semodule-utils
+      - selinux-policy-dev
+    state: present
+    update_cache: true
+
+- name: Deploy SELinux policy constructor helper
+  ansible.builtin.copy:
+    src: selinux-policy-builder.sh
+    dest: /usr/local/sbin/selinux-policy-builder
+    owner: root
+    group: root
+    mode: "0750"

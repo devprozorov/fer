@@ -1,0 +1,16 @@
+dn: {{ ldap_base_dn }}
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Corp
+dc: {{ domain_name.split('.')[0] }}
+
+dn: ou=People,{{ ldap_base_dn }}
+objectClass: top
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,{{ ldap_base_dn }}
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups

@@ -1,0 +1,37 @@
+domain_name: corp.local
+realm_name: CORP.LOCAL
+
+ldap_base_dn: dc=corp,dc=local
+ldap_admin_dn: cn=admin,dc=corp,dc=local
+ldap_admin_password: ChangeMeLDAP
+
+krb5_admin_principal: admin/admin
+krb5_admin_password: ChangeMeKRB
+
+samba_workgroup: CORP
+samba_netbios_name: DC1
+samba_share_name: shared
+samba_share_path: /srv/samba/shared
+
+bind9_forwarders:
+  - 1.1.1.1
+  - 8.8.8.8
+
+dhcp_subnet: 192.168.56.0
+dhcp_netmask: 255.255.255.0
+dhcp_range_start: 192.168.56.100
+dhcp_range_end: 192.168.56.220
+dhcp_router: 192.168.56.1
+dhcp_dns: 192.168.56.10
+
+chrony_allowed_network: 192.168.56.0/24
+
+gnome_packages:
+  - vim
+  - htop
+  - curl
+
+acdc_repo_url: https://example.com/your-org/acdc.git
+acdc_repo_branch: main
+acdc_install_root: /opt/acdc
+acdc_state_root: /var/lib/acdc

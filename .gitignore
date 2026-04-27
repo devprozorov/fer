@@ -1,0 +1,14 @@
+# Build artifacts
+bin/
+dist/
+*.out
+
+# Ansible retries
+*.retry
+
+# Runtime/env files
+.env
+*.local
+
+# Editor
+.vscode/

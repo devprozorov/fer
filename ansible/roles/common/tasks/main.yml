@@ -1,0 +1,17 @@
+- name: Install baseline packages
+  ansible.builtin.apt:
+    name:
+      - git
+      - curl
+      - wget
+      - vim
+      - gnupg
+      - software-properties-common
+      - ca-certificates
+      - python3
+      - python3-venv
+      - python3-pip
+      - rsync
+      - unzip
+    state: present
+    update_cache: true

@@ -1,0 +1,12 @@
+name: gnome-base-policy
+description: Baseline GNOME policy similar to workstation GPO profile
+dconf:
+  org/gnome/desktop/session:
+    idle-delay: uint32 900
+  org/gnome/desktop/screensaver:
+    lock-enabled: true
+    lock-delay: uint32 60
+packages:
+  - vim
+  - htop
+  - curl

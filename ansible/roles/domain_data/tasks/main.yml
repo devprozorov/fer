@@ -1,0 +1,23 @@
+- name: Create persistent state directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+  loop:
+    - "{{ acdc_state_root }}"
+    - "{{ acdc_state_root }}/ldap"
+    - "{{ acdc_state_root }}/kerberos"
+    - "{{ acdc_state_root }}/samba"
+    - "{{ acdc_state_root }}/dns"
+    - "{{ acdc_state_root }}/dhcp"
+    - "{{ acdc_state_root }}/policies"
+
+- name: Create backup directory
+  ansible.builtin.file:
+    path: /var/backups/acdc
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"

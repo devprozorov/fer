@@ -1,0 +1,10 @@
+$TTL    604800
+@       IN      SOA     dc1.{{ domain_name }}. admin.{{ domain_name }}. (
+                              2
+                         604800
+                          86400
+                        2419200
+                         604800 )
+;
+@       IN      NS      dc1.{{ domain_name }}.
+dc1     IN      A       {{ dhcp_dns }}

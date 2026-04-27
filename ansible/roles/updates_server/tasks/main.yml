@@ -1,0 +1,21 @@
+- name: Install centralized updates cache
+  ansible.builtin.apt:
+    name:
+      - apt-cacher-ng
+    state: present
+    update_cache: true
+
+- name: Ensure apt-cacher-ng service enabled
+  ansible.builtin.service:
+    name: apt-cacher-ng
+    state: started
+    enabled: true
+
+- name: Configure clients to use central cache (controller)
+  ansible.builtin.copy:
+    dest: /etc/apt/apt.conf.d/01proxy
+    content: |
+      Acquire::http::Proxy "http://{{ ansible_default_ipv4.address }}:3142";
+    owner: root
+    group: root
+    mode: "0644"

@@ -1,0 +1,12 @@
+[org/gnome/desktop/session]
+idle-delay=uint32 900
+
+[org/gnome/desktop/screensaver]
+lock-enabled=true
+lock-delay=uint32 60
+
+[org/gnome/desktop/privacy]
+remember-recent-files=false
+
+[org/gnome/software]
+download-updates=true
