@@ -10,7 +10,7 @@ import (
 
 func sambaMenu(reader *bufio.Reader, cfg *Config) {
 	items := []string{
-		"1) List ACDC-managed shares",
+		"1) List fer-managed shares",
 		"2) Add share",
 		"3) Remove share",
 		"4) Set user Samba password",
@@ -47,7 +47,7 @@ func sambaMenu(reader *bufio.Reader, cfg *Config) {
 func sambaListShares(cfg *Config) {
 	data, err := os.ReadFile(cfg.SambaACDCConf)
 	if err != nil {
-		fmt.Println("No ACDC-managed shares found.")
+		fmt.Println("No fer-managed shares found.")
 		return
 	}
 	fmt.Println(string(data))

@@ -1,6 +1,6 @@
 ANSIBLE_INVENTORY ?= ansible/inventories/prod/hosts.ini
 
-.PHONY: bootstrap deploy build-domainctl install-domainctl self-update
+.PHONY: bootstrap deploy build-fer install-fer build-domainctl install-domainctl self-update
 
 bootstrap:
 	sudo bash scripts/bootstrap.sh
@@ -8,11 +8,16 @@ bootstrap:
 deploy:
 	cd ansible && ansible-playbook -i inventories/prod/hosts.ini site.yml
 
-build-domainctl:
-	go build -o bin/domainctl ./cmd/domainctl
+build-fer:
+	go build -o bin/fer ./cmd/domainctl
 
-install-domainctl: build-domainctl
-	sudo install -m 0755 bin/domainctl /usr/local/bin/domainctl
+install-fer: build-fer
+	sudo install -m 0755 bin/fer /usr/local/bin/fer
+
+# Backward-compatible aliases
+build-domainctl: build-fer
+
+install-domainctl: install-fer
 
 self-update:
 	sudo bash scripts/self-update.sh

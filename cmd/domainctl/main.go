@@ -11,7 +11,7 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		clearScreen()
-		drawBox("ACDC DOMAIN CONTROLLER", []string{
+		drawBox("FER DOMAIN CONTROLLER", []string{
 			"1) Users & Groups  (LDAP)",
 			"2) Samba Shares",
 			"3) DNS Records  (BIND9)",

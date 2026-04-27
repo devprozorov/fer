@@ -1,6 +1,6 @@
-# ACDC: Debian Domain Controller (GNOME)
+# fer: Debian Domain Controller (GNOME)
 
-ACDC is a Windows Server-like management stack for Debian with:
+fer is a Windows Server-like management stack for Debian with:
 
 - OpenLDAP for directory
 - Kerberos (MIT) for auth
@@ -12,7 +12,7 @@ ACDC is a Windows Server-like management stack for Debian with:
 - GNOME "GPO-like" policies via dconf + Ansible packages
 - Centralized updates server (APT cache)
 - Git-based self-update without losing state
-- Terminal pseudo-graphics admin UI (`domainctl`) in Go
+- Terminal pseudo-graphics admin UI (`fer`) in Go
 
 ## Project Layout
 
@@ -46,14 +46,14 @@ ansible-playbook -i inventories/prod/hosts.ini site.yml
 5. Build and install terminal UI:
 
 ```bash
-go build -o /usr/local/bin/domainctl ./cmd/domainctl
-chmod +x /usr/local/bin/domainctl
+go build -o /usr/local/bin/fer ./cmd/domainctl
+chmod +x /usr/local/bin/fer
 ```
 
 6. Run pseudo-graphics management UI:
 
 ```bash
-sudo domainctl
+sudo fer
 ```
 
 ## Git Self-Update Without Data Loss
